@@ -1,0 +1,23 @@
+version: '2'
+services:
+  nginx-php7:
+    image: skiychan/nginx-php7:latest
+    volumes:
+      - ./code:/data/www
+    ports:
+      - 80:80
+    depends_on:
+      - mysql
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    volumes:
+      - ./mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+
+      
